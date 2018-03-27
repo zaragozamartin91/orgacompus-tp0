@@ -13,4 +13,6 @@ typedef struct {
 
 typedef Dimension Resolution;
 
+Resolution parseRes(char* str);
+
 #endif

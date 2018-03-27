@@ -6,10 +6,10 @@ LINK_TARGET = app.exe
 BDIR = build
 
 # Here is a Make Macro that uses the backslash to extend to multiple lines.
-OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o
+OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/julia.o
 
 # Compile flags
-FLAGS = -Iheaders -Wall
+FLAGS = -g -Iheaders -lm
 
 # There are two standard Targets your Makefile should probably have:
 # "all" and "clean", because they are often command-line Goals.
@@ -30,7 +30,7 @@ all : $(LINK_TARGET)
 # $^ expands to the rule's dependencies, in this case the three files
 # main.o, test1.o, and  test2.o.
 $(LINK_TARGET) : $(OBJS)
-	gcc -g -o $@ $^
+	gcc -o $@ $^ $(FLAGS)
 
 
 # Here is a Pattern Rule, often used for compile-line.
@@ -40,8 +40,6 @@ $(LINK_TARGET) : $(OBJS)
 # $< for the pattern-matched dependency
 $(BDIR)/%.o : %.c
 	gcc $(FLAGS) -c $< -o $@
-
-%c : %h
 
 clean:
 	rm -f $(OBJS) $(LINK_TARGET)
