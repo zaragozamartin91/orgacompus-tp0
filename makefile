@@ -6,10 +6,10 @@ LINK_TARGET = app.exe
 BDIR = build
 
 # Here is a Make Macro that uses the backslash to extend to multiple lines.
-OBJS = $(BDIR)/app.o
+OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o
 
 # Compile flags
-FLAGS = -Iheaders
+FLAGS = -Iheaders -Wall
 
 # There are two standard Targets your Makefile should probably have:
 # "all" and "clean", because they are often command-line Goals.

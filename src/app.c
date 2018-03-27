@@ -1,9 +1,10 @@
-#include "args.h"
-
 #include <stdio.h>
+
+#include "pixel.h"
+#include "complex.h"
+#include "args.h"
  
-int main() {
-    Argument arg = {123};
-    printf("My id is %d\n" , arg.data);
+int main(int argc, char** args) {
+    Arguments arguments = parseArgs(argc , args);
     return 0;
 }
