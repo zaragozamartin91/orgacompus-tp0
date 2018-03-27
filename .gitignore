@@ -1,11 +1,14 @@
 # Prerequisites
 *.d
 
+.vscode/
+
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
+*.exe
 
 # Linker output
 *.ilk
