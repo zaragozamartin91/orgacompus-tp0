@@ -1,19 +1,14 @@
-#include "args.h"
 #include <getopt.h>
-#include <stdio.h> /* for printf */
+#include <stdio.h>  /* for printf */
+#include <stdlib.h> /* for exit */
 
-Arguments parseArgs(int argc, char** argv) {
-  Arguments arguments;
-
+int main(int argc, char **argv) {
   int c;
   int digit_optind = 0;
 
   while (1) {
     int this_option_optind = optind ? optind : 1;
     int option_index = 0;
-    
-    // SETEANDO opterr = 0 se logra que getopt no imprima sus propios mensajes
-    opterr = 0;
     static struct option long_options[] = {{"resolution", optional_argument, 0, 0},
                                            {"center", optional_argument, 0, 0},
                                            {"width", optional_argument, 0, 0},
@@ -22,7 +17,7 @@ Arguments parseArgs(int argc, char** argv) {
                                            {"output", optional_argument, 0, 0},
                                            {0, 0, 0, 0}};
 
-    c = getopt_long(argc, argv, "r:c:w:H:s:o:", long_options, &option_index);
+    c = getopt_long(argc, argv, "abc:d:012", long_options, &option_index);
     if (c == -1) break;
 
     switch (c) {
@@ -32,32 +27,31 @@ Arguments parseArgs(int argc, char** argv) {
         printf("\n");
         break;
 
-      case 'r':
-        printf("option r with value '%s'\n", optarg);
+      case '0':
+      case '1':
+      case '2':
+        if (digit_optind != 0 && digit_optind != this_option_optind) printf("digits occur in two different argv-elements.\n");
+        digit_optind = this_option_optind;
+        printf("option %c\n", c);
         break;
 
-      case 'w':
-        printf("option w with value '%s'\n", optarg);
+      case 'a':
+        printf("option a\n");
         break;
 
-      case 'H':
-        printf("option H with value '%s'\n", optarg);
-        break;
-
-      case 's':
-        printf("option s with value '%s'\n", optarg);
-        break;
-
-      case 'o':
-        printf("option o with value '%s'\n", optarg);
+      case 'b':
+        printf("option b\n");
         break;
 
       case 'c':
         printf("option c with value '%s'\n", optarg);
         break;
 
+      case 'd':
+        printf("option d with value '%s'\n", optarg);
+        break;
+
       case '?':
-        printf("option ? with value '%s'\n", optarg);
         break;
 
       default:
@@ -71,5 +65,6 @@ Arguments parseArgs(int argc, char** argv) {
     printf("\n");
   }
 
-  return arguments;
+
+  exit(EXIT_SUCCESS);
 }
