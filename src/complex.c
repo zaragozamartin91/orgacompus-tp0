@@ -37,17 +37,17 @@ Complex mapPixel(Pixel pixel, Resolution resolution, Dimension cpxSize, Complex 
   // TODO
   Complex complex = {1.2, 2.54};
 
-  Boundaries bound = getBoundaries(cpxSize , center);
+  Boundaries bound = getBoundaries(&cpxSize , &center);
 
   return complex;
 }
 
-Boundaries getBoundaries(Dimension dim , Complex center) {
-    double w = dim.width;
-    double h = dim.height;
+Boundaries getBoundaries(Dimension* dim , Complex* center) {
+    double w = dim->width;
+    double h = dim->height;
 
-    double centerX = center.re;
-    double centerY = center.im;
+    double centerX = center->re;
+    double centerY = center->im;
 
     double left = centerX - w/2;
     double right = centerX +  w/2;

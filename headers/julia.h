@@ -6,6 +6,6 @@
 /**
  * Funcion principal que generara el archivo con el fractal
 */
-void run(Arguments args);
+void runJulia(Arguments* args);
 
 #endif

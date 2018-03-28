@@ -42,6 +42,6 @@ Complex mapPixel(Pixel pixel , Resolution resolution , Dimension cpxSize , Compl
  * Dimension dim - Tamano del plano complejo
  * Complex center - Valor de centro EN EL plano
 */
-Boundaries getBoundaries(Dimension dim , Complex center);
+Boundaries getBoundaries(Dimension* dim , Complex* center);
 
 #endif

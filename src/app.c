@@ -5,15 +5,30 @@
 #include "args.h"
 #include "julia.h"
  
-int main(int argc, char** args) {
-    Resolution res = parseRes("640x480");
-    printf("%ux%u\n" , res.width , res.height);
+int main(int argc, char** argv) {
+    Resolution res = parseRes("10x10");
+    printf("Resolution: %ux%u\n" , res.width , res.height);
 
-    Complex cpx = parseCpx("-0.123456789012345678901-7.89i");
+    Complex seed = parseCpx("-0.726895347709114071439+0.188887129043845954792i");
+    printf("Seed: %lf,%lf\n" , seed.re , seed.im);
 
     int Digs = 21;
     double OneSeventh = 1.0/7.0;
     printf("%.*f\n", Digs, OneSeventh);
+
+    /* 
+    Resolution resolution;  // resolucion de imagen
+    Complex center;         // centro del plano complejo
+    Dimension cpxSize;      // tamano del plano complejo
+    Complex seed;           // semilla disparadora
+    char* outfile;          // archivo de salida
+    */
+    Complex center = {0.0 , 0.0};
+    Dimension cpxSize = {2,2};
+    char* outfile = "";
+    Arguments args = {res , center , cpxSize , seed , outfile};
+
+    runJulia(&args);
 
     return 0;
 }
