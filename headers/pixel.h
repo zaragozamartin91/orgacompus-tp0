@@ -16,3 +16,4 @@ typedef Dimension Resolution;
 void parseRes(char* str , Resolution* targetRes);
 
 #endif
+

@@ -8,3 +8,4 @@ int main() {
     printf("%f", y);
     return 0;
 }
+

@@ -11,3 +11,5 @@ void parseRes(char* str , Resolution* targetRes) {
         targetRes->width = w;
     }
 }
+
+

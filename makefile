@@ -1,5 +1,3 @@
-vpath %.c src
-
 # Here is a simple Make Macro.
 LINK_TARGET = app.exe
 
@@ -10,37 +8,32 @@ OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/ju
 
 # Compile flags
 LFLAGS = -lm
-CFLAGS = -g -Iheaders 
+CFLAGS = -g -Iheaders -Wall
 
-# There are two standard Targets your Makefile should probably have:
-# "all" and "clean", because they are often command-line Goals.
-# Also, these are both typically Artificial Targets, because they don't typically
-# correspond to real files named "all" or "clean".  
-
-# The rule for "all" is used to incrementally build your system.
-# It does this by expressing a dependency on the results of that system,
-# which in turn have their own rules and dependencies.
 all : $(LINK_TARGET)
 
-# There is no required order to the list of rules as they appear in the Makefile.
-# Make will build its own dependency tree and only execute each rule only once
-# its dependencies' rules have been executed successfully.
-
-# Here is a Rule that uses some built-in Make Macros in its command:
-# $@ expands to the rule's target, in this case "test_me.exe".
-# $^ expands to the rule's dependencies, in this case the three files
-# main.o, test1.o, and  test2.o.
 $(LINK_TARGET) : $(OBJS)
-	gcc -o $@ $^ $(LFLAGS)
+	gcc -o $@ build/app.o build/complex.o build/args.o build/pixel.o build/julia.o build/utils.o $(LFLAGS)
 
 
-# Here is a Pattern Rule, often used for compile-line.
-# It says how to create a file with a .o suffix, given a file with a .cpp suffix.
-# The rule's command uses some built-in Make Macros:
-# $@ for the pattern-matched target
-# $< for the pattern-matched dependency
-$(BDIR)/%.o : %.c
-	gcc $(CFLAGS) -c $< -o $@
+build/app.o : src/app.c
+	gcc $(CFLAGS) -c src/app.c -o build/app.o
+
+build/complex.o : src/complex.c
+	gcc $(CFLAGS) -c src/complex.c -o build/complex.o
+
+build/args.o : src/args.c
+	gcc $(CFLAGS) -c src/args.c -o build/args.o
+
+build/pixel.o : src/pixel.c
+	gcc $(CFLAGS) -c src/pixel.c -o build/pixel.o
+
+build/julia.o : src/julia.c
+	gcc $(CFLAGS) -c src/julia.c -o build/julia.o
+
+build/utils.o : src/utils.c
+	gcc $(CFLAGS) -c src/utils.c -o build/utils.o
+
 
 clean:
 	rm -f $(OBJS) $(LINK_TARGET)

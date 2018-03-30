@@ -42,3 +42,4 @@ double modCpx(Complex* value);
 Boundaries getBoundaries(Complex* dim , Complex* center);
 
 #endif
+

@@ -15,3 +15,4 @@ typedef struct {
 Arguments parseArgs(int argc, char** args);
 
 #endif
+

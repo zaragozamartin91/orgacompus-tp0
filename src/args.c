@@ -6,7 +6,6 @@
 
 Arguments parseArgs(int argc, char** argv) {
   int c;
-  int digit_optind = 0;
 
   Resolution resolution = { 640 , 480 };
   Complex center = {0.0 , 0.0};
@@ -16,7 +15,6 @@ Arguments parseArgs(int argc, char** argv) {
   char* outfile;
 
   while (1) {
-    int this_option_optind = optind ? optind : 1;
     int option_index = 0;
     
     // SETEANDO opterr = 0 se logra que getopt no imprima sus propios mensajes
@@ -100,3 +98,4 @@ Arguments parseArgs(int argc, char** argv) {
 
   return arguments;
 }
+
