@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
     Complex seed;           // semilla disparadora
     char* outfile;          // archivo de salida
     */
-    Complex center = {0.0 , 0.0};
+    Complex center = newCpx(0.0 , 0.0);
     Dimension cpxSize = {2,2};
     char* outfile = "";
     Arguments args = {res , center , cpxSize , seed , outfile};

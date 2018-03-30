@@ -9,7 +9,8 @@ BDIR = build
 OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/julia.o
 
 # Compile flags
-FLAGS = -g -Iheaders -lm
+LFLAGS = -lm
+CFLAGS = -g -Iheaders
 
 # There are two standard Targets your Makefile should probably have:
 # "all" and "clean", because they are often command-line Goals.
@@ -30,7 +31,7 @@ all : $(LINK_TARGET)
 # $^ expands to the rule's dependencies, in this case the three files
 # main.o, test1.o, and  test2.o.
 $(LINK_TARGET) : $(OBJS)
-	gcc -o $@ $^ $(FLAGS)
+	gcc -o $@ $^ $(LFLAGS)
 
 
 # Here is a Pattern Rule, often used for compile-line.
@@ -39,7 +40,7 @@ $(LINK_TARGET) : $(OBJS)
 # $@ for the pattern-matched target
 # $< for the pattern-matched dependency
 $(BDIR)/%.o : %.c
-	gcc $(FLAGS) -c $< -o $@
+	gcc $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(LINK_TARGET)

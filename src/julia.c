@@ -5,31 +5,39 @@
 
 typedef unsigned char byte;
 
-void printCpx(Complex* cpx) {
-    printf("\t%.*f,%.*f", 10 , cpx->re , 10 , cpx->im);
+void printCpx(Complex* cpx, char* prefix) {
+    printf("%s%.*f,%.*f", prefix , 10 , cpx->re , 10 , cpx->im);
 }
 
+
 byte iterateCpx(Complex cpx , Complex seed) {
-    double mod = modCpx(cpx);
+    double mod = modCpx(&cpx);
     int res = 0;
-    Complex tempCpx = cpx;
+    Complex itCpx = cpx;
+
+    if(mod >= 2.0) {
+        printf("\tmod = %lf\n" , mod);
+        return res;
+    }
 
     //printf("mod for complex %lf,%lf is %lf \n" , cpx.re , cpx.im , mod);
     while(mod < 2 && res++ < 255) {
-        Complex pcpx = pow2Cpx(tempCpx);
-        printf("\tpow2Cpx: ");
-        printCpx(&pcpx);
-        printf("\n");
+        Complex powCpx = pow2Cpx(&itCpx);
+        //printf("\tpow2Cpx: ");
+        //printCpx(&powCpx);
+        //printf("\n");
 
-        Complex newCpx = addCpx(pcpx , seed);
-        printf("\taddCpx: ");
-        printCpx(&newCpx);
-        printf("\n");
+        Complex newCpx = addCpx(&powCpx , &seed);
+        //printf("\taddCpx: ");
+        //printCpx(&newCpx);
+        //printf("\n");
 
-        mod = modCpx(newCpx);
-        printf("\tmod for complex %.*f,%.*f is %.*f \n" , 20 , newCpx.re , 20 , newCpx.im , 20 , mod);
+        mod = modCpx(&newCpx);
+        printf("\tmod = %lf\n" , mod);
         
-        tempCpx = newCpx;
+        itCpx = newCpx;
+        printCpx(&itCpx , "\tnewCpx: ");
+        printf("\n");
     }
     return res >= 255 ? 255 : (byte) res;
 }
@@ -68,9 +76,10 @@ void runJulia(Arguments* args) {
         for(int x = 0 ; x < resolution.width ; x++) {
             double reMap = x * stepX + bound.left;
 
-            printf("this step: \t %lf,%lf \n" , reMap , imMap);
+            Complex cpx = newCpx(reMap , imMap);
+            printCpx(&cpx , "this step: ");
+            printf("\n");
 
-            Complex cpx = { reMap , imMap };
             byte value = iterateCpx(cpx , seed);
 
             unsigned index = y * resolution.width + x;

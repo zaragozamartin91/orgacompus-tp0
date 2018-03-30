@@ -3,22 +3,27 @@
 
 #include "complex.h"
 
-Complex pow2Cpx(Complex value) {
-  double re = value.re * value.re - value.im * value.im;
-  double im = 2 * value.re * value.im;
+Complex newCpx(double re , double im) {
+  Complex c = {re, im};
+  return c;
+}
+
+Complex pow2Cpx(Complex* value) {
+  double re = value->re * value->re - value->im * value->im;
+  double im = 2 * value->re * value->im;
   Complex square = {re, im};
   return square;
 }
 
-Complex addCpx(Complex first , Complex second) {
-  double re = first.re + second.re;
-  double im = first.im + second.im;
+Complex addCpx(Complex* first , Complex* second) {
+  double re = first->re + second->re;
+  double im = first->im + second->im;
   Complex cpx = {re , im};
   return cpx;
 }
 
-double modCpx(Complex value) {
-  double t = value.re * value.re + value.im * value.im;
+double modCpx(Complex* value) {
+  double t = value->re * value->re + value->im * value->im;
   return sqrt(t);
 }
 
@@ -32,15 +37,6 @@ Complex parseCpx(char* str) {
   return cpx;
 }
 
-
-Complex mapPixel(Pixel pixel, Resolution resolution, Dimension cpxSize, Complex center) {
-  // TODO
-  Complex complex = {1.2, 2.54};
-
-  Boundaries bound = getBoundaries(&cpxSize , &center);
-
-  return complex;
-}
 
 Boundaries getBoundaries(Dimension* dim , Complex* center) {
     double w = dim->width;
