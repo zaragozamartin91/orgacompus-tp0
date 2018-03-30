@@ -1,12 +1,19 @@
-#include "args.h"
 #include <getopt.h>
 #include <stdio.h> /* for printf */
+#include "args.h"
+#include "pixel.h"
+#include "utils.h"
 
 Arguments parseArgs(int argc, char** argv) {
-  Arguments arguments;
-
   int c;
   int digit_optind = 0;
+
+  Resolution resolution = { 640 , 480 };
+  Complex center = {0.0 , 0.0};
+  double cpxw = 2.0;
+  double cpxh = 2.0;
+  Complex seed = { -0.726895347709114071439 , 0.188887129043845954792 };
+  char* outfile;
 
   while (1) {
     int this_option_optind = optind ? optind : 1;
@@ -27,33 +34,45 @@ Arguments parseArgs(int argc, char** argv) {
 
     switch (c) {
       case 0:
-        printf("option %s", long_options[option_index].name);
-        if (optarg) printf(" with arg %s", optarg);
-        printf("\n");
+        switch(option_index) {
+          case 0:
+            parseRes(optarg , &resolution); break;
+          case 1:
+            parseCpx(optarg , &center); break;
+          case 2:
+            sscanf(optarg , "%lf" , &cpxw); break;
+          case 3:
+            sscanf(optarg , "%lf" , &cpxh); break;
+          case 4:
+            parseCpx(optarg , &seed); break;
+          case 5:
+            outfile = optarg; break;
+          default: break;
+        }
         break;
 
       case 'r':
-        printf("option r with value '%s'\n", optarg);
+        parseRes(optarg , &resolution);        
         break;
 
       case 'w':
-        printf("option w with value '%s'\n", optarg);
+        sscanf(optarg , "%lf" , &cpxw);
         break;
 
       case 'H':
-        printf("option H with value '%s'\n", optarg);
+        sscanf(optarg , "%lf" , &cpxh);
         break;
 
       case 's':
-        printf("option s with value '%s'\n", optarg);
+        parseCpx(optarg , &seed);
         break;
 
       case 'o':
-        printf("option o with value '%s'\n", optarg);
+        outfile = optarg;
         break;
 
       case 'c':
-        printf("option c with value '%s'\n", optarg);
+        parseCpx(optarg , &center);
         break;
 
       case '?':
@@ -70,6 +89,14 @@ Arguments parseArgs(int argc, char** argv) {
     while (optind < argc) printf("%s ", argv[optind++]);
     printf("\n");
   }
+
+  //  Resolution resolution;
+  //  Complex center;
+  //  Complex cpxSize;
+  //  Complex seed;
+  //  char* outfile;
+  Complex cpxSize = {cpxw , cpxh};
+  Arguments arguments = {resolution , center , cpxSize , seed , outfile};
 
   return arguments;
 }

@@ -27,14 +27,14 @@ double modCpx(Complex* value) {
   return sqrt(t);
 }
 
-Complex parseCpx(char* str) {
+void parseCpx(char* str , Complex* targetCpx) {
   double re;
-  char op;
   double im;
-  sscanf(str , "%lf%lf", &re , &im);
-  printf("valor: %lf %lfi\n" , re , im);
-  Complex cpx = {re , im};
-  return cpx;
+  int parseRes = sscanf(str , "%lf%lf", &re , &im);
+  if(parseRes == 2) {
+    targetCpx->re = re;
+    targetCpx->im = im;
+  }
 }
 
 

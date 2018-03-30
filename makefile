@@ -10,7 +10,7 @@ OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/ju
 
 # Compile flags
 LFLAGS = -lm
-CFLAGS = -g -Iheaders
+CFLAGS = -g -Iheaders 
 
 # There are two standard Targets your Makefile should probably have:
 # "all" and "clean", because they are often command-line Goals.

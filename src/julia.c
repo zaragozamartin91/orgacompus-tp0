@@ -17,14 +17,17 @@ byte iterateCpx(Complex cpx , Complex seed) {
         return res;
     }
 
+    Complex powCpx;
+    Complex newCpx;
+
     //printf("mod for complex %lf,%lf is %lf \n" , cpx.re , cpx.im , mod);
     while(mod < 2 && res++ < 255) {
-        Complex powCpx = pow2Cpx(&itCpx);
+        powCpx = pow2Cpx(&itCpx);
         //printf("\tpow2Cpx: ");
         //printCpx(&powCpx);
         //printf("\n");
 
-        Complex newCpx = addCpx(&powCpx , &seed);
+        newCpx = addCpx(&powCpx , &seed);
         //printf("\taddCpx: ");
         //printCpx(&newCpx);
         //printf("\n");
@@ -39,14 +42,6 @@ byte iterateCpx(Complex cpx , Complex seed) {
     return res >= 255 ? 255 : (byte) res;
 }
 
-void printMatrix(byte *values, Resolution* resolution) {
-    int items = resolution->height * resolution->width;
-    for(int i = 0; i < items ; i++) {
-        if(i % resolution->width == 0) printf("\n");
-        printf("%d " , values[i]);
-    }
-    printf("\n");
-}
 
 unsigned getOptIndex(unsigned itemCount) {
     unsigned idx = 16;
@@ -69,7 +64,6 @@ void runJulia(Arguments* args) {
     Complex seed = args->seed;
 
     unsigned itemCount = resolution.width * resolution.height;
-    byte *values = malloc( sizeof(byte) * itemCount );
 
     
     int coutMode = 0; //false
@@ -110,21 +104,14 @@ void runJulia(Arguments* args) {
             if(index % optIndex == 0) fprintf(outfile , "\n");
             fprintf(outfile , "%d " , value);
 
-            //index = y * resolution.width + x;
-            values[index] = value;
-
             ++index;
         }
     }
 
     fflush(outfile);
-    if(!coutMode) fclose(outfile);
-
-    //printMatrix(values , &resolution);
-
-    free(values);    
+    if(!coutMode) fclose(outfile); 
     
     printf("stepX: %lf , stepY: %lf \n" , stepX , stepY);
-    printf("Boundaries: %lf,%lf,%lf,%lf \n" , bound.left , bound.right , bound.top , bound.bottom);
+    printf("Boundaries: left:%lf,right:%lf,top:%lf,bottom:%lf \n" , bound.left , bound.right , bound.top , bound.bottom);
 }
 

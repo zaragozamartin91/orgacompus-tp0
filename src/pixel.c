@@ -2,10 +2,12 @@
 
 #include "pixel.h"
 
-Resolution parseRes(char* str) {
+void parseRes(char* str , Resolution* targetRes) {
     unsigned w;
     unsigned h;
-    sscanf(str , "%ux%u" , &w , &h);
-    Resolution res = { w , h };
-    return res;
+    int scanResult = sscanf(str , "%ux%u" , &w , &h);
+    if(scanResult == 2) {
+        targetRes->height = h;
+        targetRes->width = w;
+    }
 }

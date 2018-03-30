@@ -20,7 +20,7 @@ Complex newCpx(double re , double im);
 /** 
  * Obtiene un numero complejo a partir de un string
 */
-Complex parseCpx(char* str);
+void parseCpx(char* str , Complex* targetCpx);
 
 /**
  * Obtiene la raiz cuadrada de un complejo
