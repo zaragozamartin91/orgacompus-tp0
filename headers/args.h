@@ -7,7 +7,7 @@
 typedef struct {
     Resolution resolution;  // resolucion de imagen
     Complex center;         // centro del plano complejo
-    Dimension cpxSize;      // tamano del plano complejo
+    Complex cpxSize;        // tamano del plano complejo
     Complex seed;           // semilla disparadora
     char* outfile;          // archivo de salida
 } Arguments;

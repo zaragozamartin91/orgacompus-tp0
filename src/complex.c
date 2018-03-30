@@ -38,9 +38,9 @@ Complex parseCpx(char* str) {
 }
 
 
-Boundaries getBoundaries(Dimension* dim , Complex* center) {
-    double w = dim->width;
-    double h = dim->height;
+Boundaries getBoundaries(Complex* dim , Complex* center) {
+    double w = dim->re;
+    double h = dim->im;
 
     double centerX = center->re;
     double centerY = center->im;

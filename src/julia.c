@@ -48,36 +48,58 @@ void printMatrix(byte *values, Resolution* resolution) {
     printf("\n");
 }
 
+unsigned getOptIndex(unsigned itemCount) {
+    unsigned idx = 16;
+    while(itemCount % idx-- > 0);
+    return idx + 1;
+}
+
 void runJulia(Arguments* args) {
-    Dimension cpxDim = args->cpxSize;
+    Complex cpxDim = args->cpxSize;
     Complex cpxCenter = args->center;
     Boundaries bound = getBoundaries(&cpxDim , &cpxCenter);
 
-    printf("Boundaries: %lf,%lf,%lf,%lf \n" , bound.left , bound.right , bound.top , bound.bottom);
 
     Resolution resolution = args->resolution;
 
-    double stepX = ( (double) cpxDim.width) / ( (double) resolution.width);
-    double stepY = ( (double) cpxDim.height) / ( (double) resolution.height);
+    double stepX = ( (double) cpxDim.re) / ( (double) resolution.width);
+    double stepY = ( (double) cpxDim.im) / ( (double) resolution.height);
 
-    printf("stepX: %lf , stepY: %lf \n" , stepX , stepY);
 
     Complex seed = args->seed;
 
     unsigned itemCount = resolution.width * resolution.height;
     byte *values = malloc( sizeof(byte) * itemCount );
 
+    
     int coutMode = 0; //false
     char* outfilePath = args->outfile;
     coutMode = strcmp("" , outfilePath) == 0 || strcmp("cout" , outfilePath) == 0;
-    FILE* outfile = coutMode ? fopen(outfilePath , "w") : stdout;
+    if(coutMode) printf("MODO COUT ACTIVO\n");
+    FILE* outfile = coutMode ? stdout : fopen(outfilePath , "w");
 
+    if(outfile == NULL) {
+        printf("El archivo %s no existe!\n" , outfilePath);
+        return;
+    }
 
-    for(int y = 0 ; y < resolution.height ; y++) {
-        double imMap = y * stepY + bound.top;
+    fprintf(outfile,"P2\n");
+    fprintf(outfile , "%d %d\n" , resolution.width , resolution.height);
+    fprintf(outfile,"%d" , 255);
+
+    // indice optimo para introducir un ENTER en el archivo PGM
+    unsigned optIndex = getOptIndex(itemCount);
+
+    double imMap;
+    double reMap;
+    int y;
+    int x;
+    unsigned index = 0;
+    for(y = 0 ; y < resolution.height ; y++) {
+        imMap = ((double)y) * stepY * (-1.0) + bound.top;
         
-        for(int x = 0 ; x < resolution.width ; x++) {
-            double reMap = x * stepX + bound.left;
+        for(x = 0 ; x < resolution.width ; x++) {
+            reMap = ((double)x) * stepX + bound.left;
 
             Complex cpx = newCpx(reMap , imMap);
             printCpx(&cpx , "this step: ");
@@ -85,13 +107,24 @@ void runJulia(Arguments* args) {
 
             byte value = iterateCpx(cpx , seed);
 
-            unsigned index = y * resolution.width + x;
+            if(index % optIndex == 0) fprintf(outfile , "\n");
+            fprintf(outfile , "%d " , value);
+
+            //index = y * resolution.width + x;
             values[index] = value;
+
+            ++index;
         }
     }
 
-    printMatrix(values , &resolution);
+    fflush(outfile);
+    if(!coutMode) fclose(outfile);
+
+    //printMatrix(values , &resolution);
 
     free(values);    
+    
+    printf("stepX: %lf , stepY: %lf \n" , stepX , stepY);
+    printf("Boundaries: %lf,%lf,%lf,%lf \n" , bound.left , bound.right , bound.top , bound.bottom);
 }
 

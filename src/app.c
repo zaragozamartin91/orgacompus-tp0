@@ -11,17 +11,13 @@ int main(int argc, char** argv) {
     fprintf(file , "hola\n");
     fflush(stdout);
 
-
-    Resolution res = parseRes("10x10");
-    printf("Resolution: %ux%u\n" , res.width , res.height);
+    Resolution res = parseRes("640x480");
 
     Complex seed = parseCpx("-0.726895347709114071439+0.188887129043845954792i");
-    printCpx(&seed , "Seed: ");
-    printf("\n");
 
-    int Digs = 21;
-    double OneSeventh = 1.0/7.0;
-    printf("%.*f\n", Digs, OneSeventh);
+//    int Digs = 21;
+//    double OneSeventh = 1.0/7.0;
+//    printf("%.*f\n", Digs, OneSeventh);
 
     /* 
     Resolution resolution;  // resolucion de imagen
@@ -31,11 +27,17 @@ int main(int argc, char** argv) {
     char* outfile;          // archivo de salida
     */
     Complex center = newCpx(0.0 , 0.0);
-    Dimension cpxSize = {2,2};
-    char* outfile = "";
+    Complex cpxSize = {2.0,2.0};
+    char* outfile = "out.pgm";
     Arguments args = {res , center , cpxSize , seed , outfile};
 
     runJulia(&args);
+
+    printCpx(&seed , "Seed: ");
+    printf("\n");
+    printf("Resolution: %ux%u\n" , res.width , res.height);
+    printCpx(&cpxSize , "Tamano plano complejo: ");
+    printf("\n");
 
     return 0;
 }

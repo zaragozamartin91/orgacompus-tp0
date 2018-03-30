@@ -39,6 +39,6 @@ double modCpx(Complex* value);
  * Dimension dim - Tamano del plano complejo
  * Complex center - Valor de centro EN EL plano
 */
-Boundaries getBoundaries(Dimension* dim , Complex* center);
+Boundaries getBoundaries(Complex* dim , Complex* center);
 
 #endif
