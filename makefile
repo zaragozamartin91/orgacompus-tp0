@@ -6,7 +6,7 @@ LINK_TARGET = app.exe
 BDIR = build
 
 # Here is a Make Macro that uses the backslash to extend to multiple lines.
-OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/julia.o
+OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/julia.o $(BDIR)/utils.o
 
 # Compile flags
 LFLAGS = -lm

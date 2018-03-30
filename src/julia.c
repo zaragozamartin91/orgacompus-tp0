@@ -2,13 +2,10 @@
 #include <stdio.h>
 #include "julia.h"
 #include "complex.h"
+#include "utils.h"
+#include "string.h"
 
 typedef unsigned char byte;
-
-void printCpx(Complex* cpx, char* prefix) {
-    printf("%s%.*f,%.*f", prefix , 10 , cpx->re , 10 , cpx->im);
-}
-
 
 byte iterateCpx(Complex cpx , Complex seed) {
     double mod = modCpx(&cpx);
@@ -33,10 +30,10 @@ byte iterateCpx(Complex cpx , Complex seed) {
         //printf("\n");
 
         mod = modCpx(&newCpx);
-        printf("\tmod = %lf\n" , mod);
+        printf("\tmod = %lf ; " , mod);
         
         itCpx = newCpx;
-        printCpx(&itCpx , "\tnewCpx: ");
+        printCpx(&itCpx , "newCpx: ");
         printf("\n");
     }
     return res >= 255 ? 255 : (byte) res;
@@ -69,6 +66,12 @@ void runJulia(Arguments* args) {
 
     unsigned itemCount = resolution.width * resolution.height;
     byte *values = malloc( sizeof(byte) * itemCount );
+
+    int coutMode = 0; //false
+    char* outfilePath = args->outfile;
+    coutMode = strcmp("" , outfilePath) == 0 || strcmp("cout" , outfilePath) == 0;
+    FILE* outfile = coutMode ? fopen(outfilePath , "w") : stdout;
+
 
     for(int y = 0 ; y < resolution.height ; y++) {
         double imMap = y * stepY + bound.top;
