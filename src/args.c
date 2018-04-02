@@ -101,6 +101,7 @@ Arguments parseArgs(int argc, char** argv) {
   for (argi = 0; argi < argc;) {
     if (strcmp("-o", argv[argi]) == 0) {
       argi++;
+      if (argi == argc) break;
       if (strcmp("-", argv[argi]) == 0) {
         outfile = "cout";
         break;
