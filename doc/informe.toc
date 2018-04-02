@@ -1,20 +1,22 @@
 \select@language {spanish}
 \hfill \textbf {P\IeC {\'a}gina} \par 
-\contentsline {section}{\numberline {1}Introduci\IeC {\'o}n}{3}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{3}
 \contentsline {section}{\numberline {2}Dise\IeC {\~n}o e Implementaci\IeC {\'o}n}{3}
 \contentsline {subsection}{\numberline {2.1}Tipos de Datos Abstractos}{3}
 \contentsline {subsubsection}{\numberline {2.1.1}\textbf {Pixel}}{3}
 \contentsline {subsubsection}{\numberline {2.1.2}\textbf {Complex}}{4}
-\contentsline {subsubsection}{\numberline {2.1.3}\textbf {Arguments}}{5}
+\contentsline {subsubsection}{\numberline {2.1.3}\textbf {Arguments}}{4}
 \contentsline {subsection}{\numberline {2.2}Formate PGM}{5}
-\contentsline {section}{\numberline {3}Compilaci\IeC {\'o}n y ejecuci\IeC {\'o}n del programa}{7}
-\contentsline {subsection}{\numberline {3.1}Compilaci\IeC {\'o}n}{7}
-\contentsline {subsection}{\numberline {3.2}Ejecuci\IeC {\'o}n}{7}
-\contentsline {section}{\numberline {4}Corridas de prueba}{8}
-\contentsline {subsection}{\numberline {4.1}Valores por defecto}{8}
-\contentsline {paragraph}{Comando ejecutado: tp0 -o uno.pgm }{8}
-\contentsline {subsection}{\numberline {4.2}Zoom en regi\IeC {\'o}n}{8}
-\contentsline {paragraph}{Comando ejecutado: tp0 -c 0.282-0.007i -w 0.005 -H 0.005 -o dos.pgm}{8}
-\contentsline {subsection}{\numberline {4.3}Modificaci\IeC {\'o}n de la semilla}{8}
-\contentsline {subsection}{\numberline {4.4}Movimiento del centro}{9}
-\contentsline {subsection}{\numberline {4.5}Modificaci\IeC {\'o}n de la resoluci\IeC {\'o}n}{9}
+\contentsline {section}{\numberline {3}Compilaci\IeC {\'o}n y ejecuci\IeC {\'o}n del programa}{6}
+\contentsline {subsection}{\numberline {3.1}Compilaci\IeC {\'o}n}{6}
+\contentsline {subsection}{\numberline {3.2}Ejecuci\IeC {\'o}n}{6}
+\contentsline {section}{\numberline {4}Corridas de prueba}{7}
+\contentsline {subsection}{\numberline {4.1}Valores por defecto}{7}
+\contentsline {paragraph}{Comando ejecutado: tp0 -o uno.pgm }{7}
+\contentsline {subsection}{\numberline {4.2}Zoom en regi\IeC {\'o}n}{7}
+\contentsline {paragraph}{Comando ejecutado: tp0 -c 0.282-0.007i -w 0.005 -H 0.005 -o dos.pgm}{7}
+\contentsline {subsection}{\numberline {4.3}Modificaci\IeC {\'o}n de la semilla}{7}
+\contentsline {subsection}{\numberline {4.4}Movimiento del centro}{8}
+\contentsline {subsection}{\numberline {4.5}Modificaci\IeC {\'o}n de la resoluci\IeC {\'o}n}{8}
+\contentsline {section}{\numberline {5}C\IeC {\'o}digo fuente}{11}
+\contentsline {paragraph}{En esta secci\IeC {\'o}n incluiremos el c\IeC {\'o}digo fuente de nuestra aplicaci\IeC {\'o}n}{11}

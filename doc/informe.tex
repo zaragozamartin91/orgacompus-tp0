@@ -10,6 +10,27 @@
 \usepackage{enumerate}
 \usepackage{listings} 
 
+\usepackage{color}
+\usepackage{listings}
+
+\lstset{ %Coonfiguración para los códigos
+	language=C++,                % choose the language of the code
+	basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+	numbers=left,                   % where to put the line-numbers
+	numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. If it is 1 each line will be numbered
+	numbersep=5pt,                  % how far the line-numbers are from the code
+	backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+	showspaces=false,               % show spaces adding particular underscores
+	showstringspaces=false,         % underline spaces within strings
+	showtabs=false,                 % show tabs within strings adding particular underscores
+	frame=single,           % adds a frame around the code
+	tabsize=2,          % sets default tabsize to 2 spaces
+	captionpos=b,           % sets the caption-position to bottom
+	breaklines=true,        % sets automatic line breaking
+	breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+	escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
 % Inicio de documento
 \title{UNIVERSIDAD DE BUENOS AIRES\\FIUBA\\
 	\vspace{10mm}\includegraphics[scale=0.4]{fiuba}
@@ -36,7 +57,7 @@
 	\clearpage
 	\tableofcontents
 	\clearpage
-	\section{Introdución}
+	\section{Introducción}
 	Este documento representa la documentación técnica  del trabajo práctico 0, correspondiente a la materia \textbf{66.20 Organización de Computadoras}\\
 	En el mismo se incluira el desarrollo de los siguientes puntos:
 		\begin{itemize}
@@ -265,5 +286,13 @@ Ejecutamos: ./tp -o salida.pgm -r 200*200\\
 	\caption{Resultado de la prueba}
 	\label{result5}
 \end{figure}
+	\clearpage
+	\section{Código fuente}
+	\paragraph{En esta sección incluiremos el código fuente de nuestra aplicación}
+	{. }
+	\lstinputlisting[language=C,caption=julia.c]{../src/julia.c}
+	\lstinputlisting[language=C,caption=app.c]{../src/app.c}
+	\lstinputlisting[language=C,caption=args.c]{../src/args.c}
+	\lstinputlisting[language=C,caption=pixel.c]{../src/pixel.c}
 	
 \end{document}
