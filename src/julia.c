@@ -13,7 +13,7 @@ byte iterateCpx(Complex cpx , Complex seed) {
     Complex itCpx = cpx;
 
     if(mod >= 2.0) {
-        printf("\tmod = %lf\n" , mod);
+        //printf("\tmod = %lf\n" , mod);
         return res;
     }
 
@@ -33,11 +33,11 @@ byte iterateCpx(Complex cpx , Complex seed) {
         //printf("\n");
 
         mod = modCpx(&newCpx);
-        printf("\tmod = %lf ; " , mod);
+        //printf("\tmod = %lf ; " , mod);
         
         itCpx = newCpx;
-        printCpx(&itCpx , "newCpx: ");
-        printf("\n");
+        //printCpx(&itCpx , "newCpx: ");
+        //printf("\n");
     }
     return res >= 255 ? 255 : (byte) res;
 }
@@ -96,8 +96,8 @@ void runJulia(Arguments* args) {
             reMap = ((double)x) * stepX + bound.left;
 
             Complex cpx = newCpx(reMap , imMap);
-            printCpx(&cpx , "this step: ");
-            printf("\n");
+            //printCpx(&cpx , "this step: ");
+            //printf("\n");
 
             byte value = iterateCpx(cpx , seed);
 
