@@ -9,7 +9,7 @@
 \usepackage{imakeidx}
 \usepackage{enumerate}
 \usepackage{listings} 
-
+\usepackage{pdfpages}
 \usepackage{color}
 \usepackage{listings}
 
@@ -24,7 +24,7 @@
 	showspaces=false,               % show spaces adding particular underscores
 	showstringspaces=false,         % underline spaces within strings
 	showtabs=false,                 % show tabs within strings adding particular underscores
-	frame=single,           % adds a frame around the code
+	frame=simple,           % adds a frame around the code
 	tabsize=2,          % sets default tabsize to 2 spaces
 	captionpos=b,           % sets the caption-position to bottom
 	breaklines=true,        % sets automatic line breaking
@@ -66,6 +66,8 @@
 			\item Corridas de prueba
 			\item Código Fuente
 		\end{itemize}
+	\subsection{Enunciado}
+	\includepdf[pages=-]{sources/enunciado.pdf}
 	\section{Diseño e Implementación} 
 	Se desarrolló un programa que permite dibujar el conjunto de Julia, en lenguaje C.
 	
@@ -160,7 +162,7 @@ Arguments parseArgs(int argc, char** args);
 
 \end{lstlisting}
 	
-\subsection{Formate PGM}
+\subsection{Formato PGM}
 	El formato utilizado para generar la imagen es el PGM. En sus especificaciones establece que ninguna linea debe tener más de 70 caracteres.\\Debido a esto se tomó la decisión de que el programa genere el número óptimo de caracteres que debe tener cada linea en el archivo. El número máximo de cada valor es 255 aproximadamente 3 caracteres, teniendo en cuenta los 70 caracteres por línea el máximo de valores es 16. Su funcionamiento se puede ver en el siguiente código 
 	
 	\begin{lstlisting}[frame=single]
