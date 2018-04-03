@@ -37,12 +37,7 @@
 	\vspace{5mm}\\66.20 Organización de Computadoras\\
 	Trabajo práctico 0: Infraestructura básica\\1$^{er}$ cuatrimestre de 2018}
 
-\author{ \textbf{ALUMNOS} 
-	\vspace{5mm}\\
-	\textbf{92454 ZARAGOZA, MARTIN}\\
-	\textbf{92691 SIBIKOWSKI, NICOLAS}\\
-	\textbf{91985 DUFAU, EZEQUIEL}\\
-}
+\author{}
 \date{}
 
 \setlength{\parindent}{12pt}
@@ -54,6 +49,21 @@
 	
 	\lstset{language=C}  
 	\maketitle
+	\begin{center} \large ALUMNOS \end{center}
+	\begin{table}[htbp]
+		\begin{center}
+			\begin{tabular}{ll}
+				
+				\large Padrón & \large Alumno \\
+				\large 92454 & \large ZARAGOZA, MARTIN \\
+				\large 92691 & \large SIBIKOWSKI, NICOLAS \\
+				\large 91985 & \large DUFAU, EZEQUIEL \\
+			\end{tabular}
+			
+			\label{tabla:sencilla}
+		\end{center}
+	\end{table}
+	
 	\clearpage
 	\tableofcontents
 	\clearpage
@@ -179,10 +189,10 @@ itemCount = resolution.width * resolution.height;
 	\clearpage
 	\section{Compilación y ejecución del programa}
 	
-	Utilizamos el programa GXemul para simular un entorno de desarrollo. El mismo consta de una máquina MIPS corriendo una versión del sistema operativo BSD. Debido a esto, el compilador utilizado utilizado es el que trae instalada la imagen provista por la cátedra. El mismo es el \textbf{(GCC) 3.3.3 (NetBSD nb3 20040520)}
+	Utilizamos el programa GXemul para simular un entorno de desarrollo. El mismo consta de una máquina MIPS corriendo una versión del sistema operativo BSD. Debido a esto, el compilador utilizado es el que trae instalada la imagen provista por la cátedra. El mismo es el \textbf{(GCC) 3.3.3 (NetBSD nb3 20040520)}
 	\\\\
 	\subsection{Compilación}
-	Para facilitar el proceso de compilación, programamos un Makefile, seteando las opciones correspondientes. Se debe ejecutar make en el directorio raiz del proyecto y el programa queda compilado. Se genera un ejecutable llamado app
+	Para facilitar el proceso de compilación, programamos un Makefile, seteando las opciones correspondientes. Se debe ejecutar make en el directorio raiz del proyecto y el programa queda compilado. Se genera un ejecutable llamado app.exe
 	\subsection{Ejecución}
 	Se debe ejecutar\\
 	./app.exe [OPCIONES]\\
@@ -198,11 +208,14 @@ itemCount = resolution.width * resolution.height;
 	
 	\section{Corridas de prueba}
 	\subsection{Valores por defecto}
-	Se generó un dibujo usando los valores por defecto, barriendo la región rectangular del plano comprendida entre los vértices -2+2i y+2-2i.	La validación fue visual. Comparando contra un dibujo patrón disponible en el enunciado.
+	Se generó un dibujo usando los valores por defecto, barriendo la región rectangular del plano comprendida entre los vértices -2+2i y+2-2i.	La validación fue visual. Comparando contra un dibujo patrón disponible en el enunciado.\\
+
+Comando ejecutado:
+	\begin{lstlisting}[frame=simple,stepnumber=0]
+tp0 -o uno.pgm
+	\end{lstlisting} \vspace{5mm}
 	
-	\paragraph{Comando ejecutado: tp0 -o uno.pgm }
-	
-	Resultado de la prueba:
+	Resultado de la prueba(Figura1):
 	\begin{figure}[h]
 		\centering
 		\subfloat[nuestro programa]{
@@ -217,10 +230,11 @@ itemCount = resolution.width * resolution.height;
 	\subsection{Zoom en región}
 	Hacemos zoom sobre la región centrada en 0.282-0.007i, usando un
 	rectángulo de 0.005 unidades de lado.
-	
-	\paragraph{Comando ejecutado: tp0 -c 0.282-0.007i -w 0.005 -H 0.005 -o dos.pgm}
-	
-	Resultado de la prueba:
+Comando ejecutado:	
+	\begin{lstlisting}[stepnumber=0,frame=simple]
+tp0 -c 0.282-0.007i -w 0.005 -H 0.005 -o dos.pgm} 
+	\end{lstlisting} \vspace{5mm}
+	Resultado de la prueba (Figura 2):
 	\begin{figure}[h]
 		\centering
 		\subfloat[nuestro programa]{
@@ -234,11 +248,13 @@ itemCount = resolution.width * resolution.height;
 	\end{figure}
 
 	\subsection{Modificación de la semilla}
-	En esta prueba vamos a modificar la semilla utilizando el comando -s. Apoyandonos mediante otra implementación del Algoritmo de Julia, vamos a comparar la imagen generada por nuestro programa coon la generada por la otra implementación. La implementación de Julia la obtuvimos en https://www.wolframalpha.com/juliaset.html
-	Utilizamos la semilla  -0.742+0.1i.
+	En esta prueba vamos a modificar la semilla utilizando el comando -s. Apoyandonos mediante otra implementación del Algoritmo de Julia, vamos a comparar la imagen generada por nuestro programa con la generada por la otra implementación. La implementación de Julia la obtuvimos en https://www.wolframalpha.com/juliaset.html. Utilizamos la semilla  -0.742+0.1i.
 	\\
-	Ejecutamos: ./tp -o salida.pgm -s -0.742+0.1i\\
-	Resultado de la prueba:
+	Ejecutamos: 
+	\begin{lstlisting}[stepnumber=0,frame=simple]
+./tp -o salida.pgm -s -0.742+0.1i
+	\end{lstlisting}\vspace{5mm}
+	Resultado de la prueba (Figura 3):
 		\begin{figure}[h]
 		\centering
 		\subfloat[nuestro programa]{
@@ -252,8 +268,9 @@ itemCount = resolution.width * resolution.height;
 	\end{figure}
 
 	\subsection{Movimiento del centro}
-	En esta prueba vamos a generar cuatro imagenes(una para cada cuadrante) de la imagen utilizada en la prueba de valores por defecto.
+	En esta prueba vamos a generar cuatro imagenes(una para cada cuadrante) de la imagen utilizada en la prueba de valores por defecto.\\
 	
+	Resultado de la prueba (Figura 4).
 			\begin{figure}[h]
 		\centering
 		\subfloat[./tp -c -0.5+0.5i]{
@@ -272,10 +289,12 @@ itemCount = resolution.width * resolution.height;
 		\label{f:comparacion3}
 	\end{figure} 
 \subsection{Modificación de la resolución}
-En esta prueba se modificará la resolución de la pantalla a 200*200 px. utilizando el comando -r
+En esta prueba se modificará la resolución de la pantalla a 200x200 px. utilizando el comando -r. Figura 5.
 \\
 Prueba ejecutada
-Ejecutamos: ./tp -o salida.pgm -r 200*200\\
+\begin{lstlisting}[frame=simple,stepnumber=0]
+./tp -o salida.pgm -r 200x200
+\end{lstlisting}
 
 	\begin{figure}[h]
 	\centering
@@ -288,6 +307,42 @@ Ejecutamos: ./tp -o salida.pgm -r 200*200\\
 	\caption{Resultado de la prueba}
 	\label{result5}
 \end{figure}
+
+	\subsection{Salida estandar}
+	Vamos a probar el comando -o -. La idea es obtener por salida estandar la imagen. Para tal fin se ejecutó el siguiente comando
+	\begin{lstlisting}[frame=simple,stepnumber=0]
+./app.exe -o -
+	\end{lstlisting}
+	De esta manera obtenemos por pantalla la salida correspondiente a una imagen del conjunto de Julia con las opciones por defecto. Figura 6.
+	
+	\begin{figure}[h]
+		\centering
+		\subfloat[Salida por pantalla]{
+			\label{f:igualdad}
+			\includegraphics[width=0.8\textwidth]{pantalla}}
+		\caption{Prueba de la salida por pantalla}
+		\label{result6}
+	\end{figure}
+	
+	Otra prueba que hicimos para corroborrar el correcto funcionamiento fue ejecutar 
+	\begin{lstlisting}[frame=simple,stepnumber=0]
+./app.exe -o salida.pgm
+	\end{lstlisting} Y luego:
+	\begin{lstlisting}[frame=simple,stepnumber=0] 
+./app.exe -o - > salida2.pgm. 
+	\end{lstlisting} 
+	
+	Con esta última ejecución redireccionamos la salida estandar a un archivo. Solo basta utilizar el comando diff utilizando el comando -s para obtener si son identicos. Figura 7
+	
+	\begin{figure}[h]
+	\centering
+	\subfloat[Prueba de la igualdad de los archivos]{
+		\label{f:igualdad}
+		\includegraphics[width=\textwidth]{identicos}}
+	\caption{Resultado de la prueba}
+	\label{result6}
+\end{figure}
+	
 	\clearpage
 	\section{Código fuente}
 	\paragraph{En esta sección incluiremos el código fuente de nuestra aplicación}
