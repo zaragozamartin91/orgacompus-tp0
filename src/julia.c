@@ -66,7 +66,7 @@ void runJulia(Arguments* args) {
   int coutMode = 0;  // false
   char* outfilePath = args->outfile;
   coutMode = strcmp("", outfilePath) == 0 || strcmp("cout", outfilePath) == 0;
-  if (coutMode) printf("MODO COUT ACTIVO\n");
+  //if (coutMode) printf("MODO COUT ACTIVO\n");
   FILE* outfile = coutMode ? stdout : fopen(outfilePath, "w");
 
   if (outfile == NULL) {
@@ -109,7 +109,7 @@ void runJulia(Arguments* args) {
   fflush(outfile);
   if (!coutMode) fclose(outfile);
 
-  printf("stepX: %lf , stepY: %lf \n", stepX, stepY);
-  printf("Boundaries: left:%lf,right:%lf,top:%lf,bottom:%lf \n", bound.left,
-         bound.right, bound.top, bound.bottom);
+  //printf("stepX: %lf , stepY: %lf \n", stepX, stepY);
+  //printf("Boundaries: left:%lf,right:%lf,top:%lf,bottom:%lf \n", bound.left,
+ //        bound.right, bound.top, bound.bottom);
 }
