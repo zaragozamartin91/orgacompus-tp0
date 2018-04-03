@@ -10,7 +10,10 @@ OBJS = $(BDIR)/app.o $(BDIR)/complex.o $(BDIR)/args.o $(BDIR)/pixel.o $(BDIR)/ju
 LFLAGS = -lm
 CFLAGS = -g -Iheaders -Wall
 
-all : $(LINK_TARGET)
+all : directories $(LINK_TARGET)
+
+directories:
+	mkdir -p build
 
 $(LINK_TARGET) : $(OBJS)
 	gcc -o $@ build/app.o build/complex.o build/args.o build/pixel.o build/julia.o build/utils.o $(LFLAGS)
