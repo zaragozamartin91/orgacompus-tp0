@@ -13,31 +13,20 @@ byte iterateCpx(Complex cpx, Complex seed) {
   Complex itCpx = cpx;
 
   if (mod >= 2.0) {
-    // printf("\tmod = %lf\n" , mod);
     return res;
   }
 
   Complex powCpx;
   Complex newCpx;
 
-  // printf("mod for complex %lf,%lf is %lf \n" , cpx.re , cpx.im , mod);
   while (mod < 2 && res++ < 255) {
     powCpx = pow2Cpx(&itCpx);
-    // printf("\tpow2Cpx: ");
-    // printCpx(&powCpx);
-    // printf("\n");
-
     newCpx = addCpx(&powCpx, &seed);
-    // printf("\taddCpx: ");
-    // printCpx(&newCpx);
-    // printf("\n");
-
+    
     mod = modCpx(&newCpx);
-    // printf("\tmod = %lf ; " , mod);
 
     itCpx = newCpx;
-    // printCpx(&itCpx , "newCpx: ");
-    // printf("\n");
+    
   }
   return res >= 255 ? 255 : (byte)res;
 }
@@ -66,7 +55,7 @@ void runJulia(Arguments* args) {
   int coutMode = 0;  // false
   char* outfilePath = args->outfile;
   coutMode = strcmp("", outfilePath) == 0 || strcmp("cout", outfilePath) == 0;
-  //if (coutMode) printf("MODO COUT ACTIVO\n");
+  
   FILE* outfile = coutMode ? stdout : fopen(outfilePath, "w");
 
   if (outfile == NULL) {
@@ -93,9 +82,7 @@ void runJulia(Arguments* args) {
       reMap = ((double)x) * stepX + bound.left;
 
       Complex cpx = newCpx(reMap, imMap);
-      // printCpx(&cpx , "this step: ");
-      // printf("\n");
-
+      
       byte value = iterateCpx(cpx, seed);
 
       if (index % optIndex == 0) fprintf(outfile, "\n");
@@ -109,7 +96,4 @@ void runJulia(Arguments* args) {
   fflush(outfile);
   if (!coutMode) fclose(outfile);
 
-  //printf("stepX: %lf , stepY: %lf \n", stepX, stepY);
-  //printf("Boundaries: left:%lf,right:%lf,top:%lf,bottom:%lf \n", bound.left,
- //        bound.right, bound.top, bound.bottom);
 }

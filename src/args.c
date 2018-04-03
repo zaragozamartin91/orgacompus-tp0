@@ -110,12 +110,7 @@ Arguments parseArgs(int argc, char** argv) {
     argi++;
   }
 
-  //  Resolution resolution;
-  //  Complex center;
-  //  Complex cpxSize;
-  //  Complex seed;
-  //  char* outfile;
-  Complex cpxSize = {cpxw, cpxh};
+	Complex cpxSize = {cpxw, cpxh};
   Arguments arguments = {resolution, center, cpxSize, seed, outfile};
 
   return arguments;
